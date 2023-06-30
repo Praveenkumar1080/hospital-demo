@@ -6,11 +6,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.hibernate.annotations.GeneratorType;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import net.bytebuddy.dynamic.loading.ClassReloadingStrategy.Strategy;
 
 @Entity
 @Getter
@@ -19,21 +22,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 
-public class Appointment {
+public class Affiliatedwith {
+
 
 	@Id
-	@GeneratedValue (strategy=GenerationType.AUTO)
-	private Integer appointmentid;
-	@Column
-	private Integer patient;
-	@Column
-	private Integer prepnums;
-	@Column
+	@GeneratedValue (strategy= GenerationType.AUTO)
 	private Integer physician;
 	@Column
-	private String start_dt_time;
+	private Integer department;
 	@Column
-	private String end_dt_time;
-	@Column
-	private String examinationroom;
-	}
+	private Boolean primaryaffiliation;
+	
+}
