@@ -1,11 +1,20 @@
 package com.cg.hms.Entity;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+
 public class Undergoes {
+@Id
 private Integer patient;
+@Column
 private Integer procedure;
+@Column
 private Integer stay;
+@Column
 private String date;
+@Column
 private Integer physician;
+@Column
 private Integer assistingnurse;
 public Integer getPatient() {
 	return patient;

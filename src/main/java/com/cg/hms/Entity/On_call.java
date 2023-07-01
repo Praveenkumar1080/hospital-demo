@@ -1,9 +1,16 @@
 package com.cg.hms.Entity;
 
+import javax.persistence.Column;
+import javax.persistence.Id;
+
 public class On_call {
+@Id
 private int nurse;
+@Column
 private int blockfloor;
+@Column
 private String oncallstart;
+@Column
 private String oncallend;
 public int getNurse() {
 	return nurse;
