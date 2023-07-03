@@ -38,8 +38,8 @@ public class DepartmentServiceImpl implements DepartmentService{
 	@Override
 	public Department saveDepartment(String name, Integer head) {
 		Department department=new Department();
-		departmentRepository.setName(name);
-		departmentRepository.setHead(head);
+		department.setName(name);
+		department.setHead(head);
 		return departmentRepository.save(department);
 	}
 
@@ -52,17 +52,17 @@ public class DepartmentServiceImpl implements DepartmentService{
 	@Override
 	public Department getDepartmentDetailByDeptId(Integer departmentid) {
 		
-		return departmentRepository.findById(departmentid).orElseThrow(()-> new RuntimeException("department not found"+departmentid));;
+		return departmentRepository.findById(departmentid).orElseThrow(()-> new RuntimeException("department not found"+departmentid));
 	}
 
 	@Override
 	public Physician getHeadOfDepartmentDetails(Integer head) {
-		Department department=departmentRepository.findById(departmentid).orElseThrow(()-> new RuntimeException("department not found"+departmentid));
+		Department department=departmentRepository.findById(head).orElseThrow(()-> new RuntimeException("department not found"+head));
 		int headEmployeeId=departmentRepository.getHead();
 		
 		
 		
-		return physicianRepository.findById(headEmployeeId).orElseThrow(()->new RuntimeException("Department head not found"+headEmployeeId));;
+		return physicianRepository.findById(headEmployeeId).orElseThrow(()->new RuntimeException("Department head not found"+headEmployeeId));
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class DepartmentServiceImpl implements DepartmentService{
 		List<Trainedin> certifications=trainedinRepository.findByPhysician(head);
 		List<String> certificationNames=new ArrayList<>();
 		for(Trainedin certification : certifications) {
-			int treatmentCode=certification.gettreatment();
+			int treatmentCode=certification.getTreatment();
 			Procedure procedure=procedureRepository.findByCode(treatmentCode);
 			certificationNames.add(procedure.getName());
 			
@@ -97,16 +97,16 @@ public class DepartmentServiceImpl implements DepartmentService{
 
 	@Override
 	public void updateDepartmentHeadId(Integer head, Integer departmentid) {
-		Department department=departmentRepository.findById(departmentid).orElseThrow(()->new NotFoundException("department not found"));
-		departmentRepository.setHead(head);
+		Department department=departmentRepository.findById(departmentid).orElseThrow(()->new RuntimeException("department not found"));
+		department.setHead(head);
 		departmentRepository.save(department);
 		
 	}
 
 	@Override
 	public void updateNameOfDepartment(Integer departmentid, String newName) {
-		Department department=departmentRepository.findById(departmentid).orElseThrow(()->new NotFoundException("department not found"));
-		departmentRepository.setName(newName);
+		Department department=departmentRepository.findById(departmentid).orElseThrow(()->new RuntimeException("department not found"));
+		department.setName(newName);
 		departmentRepository.save(department);
 		
 		
