@@ -1,6 +1,7 @@
 package com.cg.hms.Service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.cg.hms.Entity.Department;
 import com.cg.hms.Entity.Physician;
-import com.cg.hms.Entity.Procedure;
+
+import com.cg.hms.Entity.Procedures;
 import com.cg.hms.Entity.Trainedin;
 import com.cg.hms.repository.DepartmentRepository;
 import com.cg.hms.repository.PhysicianRepository;
@@ -36,7 +38,7 @@ public class DepartmentServiceImpl implements DepartmentService{
 	}
 
 	@Override
-	public Department saveDepartment(String name, Integer head) {
+	public Department saveDepartment(String name, Physician head) {
 		Department department=new Department();
 		department.setName(name);
 		department.setHead(head);
@@ -75,8 +77,8 @@ public class DepartmentServiceImpl implements DepartmentService{
 		List<Trainedin> certifications=trainedinRepository.findByPhysician(head);
 		List<String> certificationNames=new ArrayList<>();
 		for(Trainedin certification : certifications) {
-			int treatmentCode=certification.getTreatment();
-			Procedure procedure=procedureRepository.findByCode(treatmentCode);
+			Procedures treatmentCode=certification.getTreatment();
+			Procedures procedure=procedureRepository.findByCode(treatmentCode);
 			certificationNames.add(procedure.getName());
 			
 		}
@@ -96,7 +98,7 @@ public class DepartmentServiceImpl implements DepartmentService{
 	}
 
 	@Override
-	public void updateDepartmentHeadId(Integer head, Integer departmentid) {
+	public void updateDepartmentHeadId(Physician head, Integer departmentid) {
 		Department department=departmentRepository.findById(departmentid).orElseThrow(()->new RuntimeException("department not found"));
 		department.setHead(head);
 		departmentRepository.save(department);
