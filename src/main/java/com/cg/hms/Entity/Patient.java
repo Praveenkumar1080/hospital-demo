@@ -14,7 +14,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class patient {
+public class Patient {
     @Id
 	private Integer ssn;
     @Column

@@ -3,7 +3,7 @@ package com.cg.hms.Entity;
 import javax.persistence.Column;
 import javax.persistence.Id;
 
-public class On_call {
+public class OnCall {
 @Id
 private int nurse;
 @Column
@@ -41,7 +41,7 @@ public String toString() {
 	return "On_call [nurse=" + nurse + ", blockfloor=" + blockfloor + ", oncallstart=" + oncallstart + ", oncallend="
 			+ oncallend + "]";
 }
-public On_call() {
+public OnCall() {
 	super();
 	// TODO Auto-generated constructor stub
 }

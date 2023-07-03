@@ -3,7 +3,7 @@ package com.cg.hms.Entity;
 import javax.persistence.Column;
 import javax.persistence.Id;
 
-public class nurse {
+public class Nurse {
 	
 	
 	@Id
