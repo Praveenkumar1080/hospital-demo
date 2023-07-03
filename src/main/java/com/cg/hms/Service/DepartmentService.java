@@ -10,15 +10,15 @@ import com.cg.hms.Entity.Physician;
 @Service
 public interface DepartmentService {
 
-	public Department saveDepartment(Department department);
+	public Department saveDepartment(String name,Integer head);
 	public List<Department> getallDepartments(Integer departmentid);
 	public Department getDepartmentDetailByDeptId(Integer departmentid);
-	public Department getHeadOfDepartmentDetails(Integer head);
-	public List<Department> getHeadCertificationDetailByDeptId(Integer departmentid);
+	public Physician getHeadOfDepartmentDetails(Integer head);
+	public List<String> getHeadCertificationDetailByDeptId(Integer departmentid);
 	public List<Department> getDepartmentByHeadId(Integer head);
 	public Boolean PhysicianIsHeadOfAnyDepartmentOrNot(Integer physicianid);
-	public Department updateDepartmentHeadId(Integer head,Integer departmentid ,Physician physician);
-	public Department updateNameOfDepartment(String name,Integer departmentid ,Physician physician);
+	public void updateDepartmentHeadId(Integer head,Integer departmentid);
+	public void updateNameOfDepartment(Integer departmentid ,String newName);
 	
 	
 }

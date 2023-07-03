@@ -1,7 +1,7 @@
 package com.cg.hms.Service;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -14,10 +14,10 @@ public interface PhysicianService {
 	public Physician savePhysician(Physician physician);
 	public Physician getPhysicianDetailsByName(String name);
 	public List<Physician>  getallPhysiciansByPositions(String position);
-	public List<Physician>  getallPhysiciansByEmpid(Integer employeeid);
-	public Physician updatePositionOfPhysician(Integer employeeid,Physician physician);
-	public Physician updateNameOfPhysician(String name,Physician physician);
-	public Physician updateSSNOfPhysician(Integer ssn,Physician physician);
+	public Optional<Physician>  getallPhysiciansByEmpid(Integer employeeid);
+	public Physician updatePositionOfPhysician(Integer employeeid,String newPosition);
+	public Physician updateNameOfPhysician(Integer employeeid,String newName);
+	public Physician updateSSNOfPhysician(Integer employeeid,Integer SSN);
 
 	
 	

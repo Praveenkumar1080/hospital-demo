@@ -7,6 +7,8 @@ import com.cg.hms.Entity.Procedure;
 
 @Repository
 public interface ProcedureRepository extends JpaRepository<Procedure, Integer>{
+
+	Procedure findByCode(int treatmentCode);
 	
 
 }
