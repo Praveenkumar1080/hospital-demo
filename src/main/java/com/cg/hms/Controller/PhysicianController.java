@@ -42,12 +42,12 @@ public ResponseEntity<Physician> getPhysicianByName(@RequestParam(value="name") 
 	return new ResponseEntity<Physician>(obj,HttpStatus.OK);
 }
 
-/*
- * @RequestMapping(method = RequestMethod.GET) public
- * ResponseEntity<List<Physician>> getPhysicianByPos(@RequestParam(value="pos")
- * String pos){ List<Physician> obj = service.getallPhysiciansByPositions(pos);
- * return new ResponseEntity<List<Physician>>(obj,HttpStatus.OK); }
- */
+
+  @RequestMapping(method = RequestMethod.GET,value="/") 
+  public ResponseEntity<List<Physician>> getPhysicianByPos(@RequestParam(value="pos")String pos){ 
+  List<Physician> obj = service.getallPhysiciansByPositions(pos);
+  return new ResponseEntity<List<Physician>>(obj,HttpStatus.OK); }
+ 
 @GetMapping(value ="/{empid}")
 public ResponseEntity<Physician> getPhysicianByEmpid(@PathVariable Integer empid){
 	Physician obj = service.getPhysicianByEmpid(empid);
