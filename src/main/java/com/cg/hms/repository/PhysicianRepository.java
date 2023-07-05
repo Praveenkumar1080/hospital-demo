@@ -12,7 +12,7 @@ public interface PhysicianRepository extends JpaRepository<Physician, Integer> {
 
 	
 
-	Physician findAllByName(String name);
+	Physician findByName(String name);
 
 	List<Physician> findByPosition(String position);
 

@@ -24,7 +24,7 @@ public class Patient {
     @Column
 	private String address;
     @Column
-	private Integer phone;
+	private String phone;
     @Column
 	private Integer insuranceid;
     @ManyToOne

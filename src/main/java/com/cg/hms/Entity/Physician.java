@@ -15,12 +15,12 @@ import lombok.Setter;
 @Entity
 public class Physician {
 @Id
-private Integer EmployeeID;
+private int EmployeeID;
 @Column
 private String name;
 @Column
 private String position;
 @Column
-private Integer ssn;
+private int ssn;
 
 }

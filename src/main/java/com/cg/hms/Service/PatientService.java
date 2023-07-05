@@ -11,13 +11,14 @@ import com.cg.hms.Entity.Patient;
 @Service
 public interface PatientService {
 	
-	public Patient savePatient(Patient patient);
-	public List<Patient> getallPatients(Integer ssn);
-	public List<Patient> getParticularPhysicians(Integer employeeid,Integer ssn);
-	public Patient getParticularPhysician(Integer employeeid,Integer ssn);
-	public Patient getInsuranceOfPatient();
+	public Patient addPatientReport(Patient report);
+	public List<Patient> getallPatients();
+	public List<Patient> getParticularPhysicians(Integer pid);
+	public Patient getParticularPatient(Integer physicianid,Integer ssn);
+	public Integer getInsuranceOfPatient(Integer patientid);
 	public Patient updateAddressOfPatient(Integer ssn,Patient patient);
 	public Patient updatePhoneOfPatient(Integer ssn,Patient patient);
+	Patient getParticularPhysician(Integer physicianid, Integer ssn);
 	
 
 }

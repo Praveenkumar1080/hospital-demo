@@ -10,10 +10,10 @@ import com.cg.hms.Entity.Nurse;
 public interface NurseService {
 	
 	public Nurse saveNurse(Nurse nurse);
-	public List<Nurse> getallNurses(Integer employeeid);
+	public List<Nurse> getallNurses();
 	public Nurse getDetailOfNurseByemployeeId(Integer employeeid);
-	public Nurse getPositionOfNurseByemployeeId(String position);
-	public Boolean NurseIsRegisteredOrNot(Boolean registered);
+	public String getPositionOfNurseByemployeeId(Integer id);
+	public Boolean NurseIsRegisteredOrNot(Integer id);
 	public Nurse updateValueOfregistred(Integer employeeid, Nurse nurse);
 	public Nurse updateValueOfSSN(Integer ssn, Nurse nurse);
 	

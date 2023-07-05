@@ -28,7 +28,7 @@ public class PhysicianServiceImpl implements PhysicianService  {
 	@Override
 	public Physician getPhysicianDetailsByName(String name) {
 		
-		return physicianRepository.findAllByName(name);
+		return physicianRepository.findByName(name);
 	}
 
 	@Override
@@ -38,31 +38,31 @@ public class PhysicianServiceImpl implements PhysicianService  {
 	}
 
 	@Override
-	public Optional<Physician> getallPhysiciansByEmpid(Integer employeeid) {
+	public Physician getPhysicianByEmpid(Integer employeeid) {
 		
-		return physicianRepository.findById(employeeid);
+		return physicianRepository.findById(employeeid).get();
 	}
 
 	@Override
-	public Physician updatePositionOfPhysician(Integer employeeid, String newPosition) {
+	public Physician updatePositionOfPhysician(Integer employeeid,Physician physician) {
+		Physician obj=physicianRepository.findById(employeeid).orElseThrow(() -> new RuntimeException("physician not found with employeeid:" + employeeid));
+		obj.setPosition(physician.getPosition());
+		return physicianRepository.save(obj);
+		
+	}
+
+	@Override
+	public Physician updateNameOfPhysician(Integer employeeid, Physician physician) {
 		Physician physician1=physicianRepository.findById(employeeid).orElseThrow(() -> new RuntimeException("physician not found with employeeid:" + employeeid));
-		physician1.setPosition(newPosition);
+		physician1.setName(physician.getName());
 		return physicianRepository.save(physician1);
 		
 	}
 
 	@Override
-	public Physician updateNameOfPhysician(Integer employeeid, String newName) {
+	public Physician updateSSNOfPhysician(Integer employeeid,Physician physician) {
 		Physician physician1=physicianRepository.findById(employeeid).orElseThrow(() -> new RuntimeException("physician not found with employeeid:" + employeeid));
-		physician1.setName(newName);
-		return physicianRepository.save(physician1);
-		
-	}
-
-	@Override
-	public Physician updateSSNOfPhysician(Integer employeeid, Integer SSN) {
-		Physician physician1=physicianRepository.findById(employeeid).orElseThrow(() -> new RuntimeException("physician not found with employeeid:" + employeeid));
-		physician1.setSsn(SSN);
+		physician1.setSsn(physician.getSsn());
 		return physicianRepository.save(physician1);
 	}
 	

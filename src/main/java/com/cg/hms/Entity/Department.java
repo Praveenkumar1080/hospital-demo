@@ -15,7 +15,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Department {
 @Id
- private Integer DepartmentID;
+ private int DepartmentID;
 @Column
  private String name;
 @ManyToOne

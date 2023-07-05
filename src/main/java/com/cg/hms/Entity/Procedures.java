@@ -16,9 +16,9 @@ import lombok.Setter;
 @Entity
 public class Procedures {
 	@Id
-	private int Code;
+	private int code;
 	@Column
-    private String Name;
+    private String name;
 	@Column
-    private Integer cost;
+    private int cost;
 }

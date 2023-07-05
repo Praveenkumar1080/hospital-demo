@@ -2,6 +2,7 @@ package com.cg.hms.Service;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class DepartmentServiceImpl implements DepartmentService{
 	
 	
    @Autowired
-	public void DepartmentService(DepartmentRepository departmentRepository,PhysicianRepository physicianRepository,TrainedinRepository trainedinRepository,ProcedureRepository procedureRepository) {
+	public void DepartmentServiceI(DepartmentRepository departmentRepository,PhysicianRepository physicianRepository,TrainedinRepository trainedinRepository,ProcedureRepository procedureRepository) {
 		this.departmentRepository=departmentRepository;
 		this.physicianRepository=physicianRepository;
 		this.trainedinRepository=trainedinRepository;
@@ -38,78 +39,76 @@ public class DepartmentServiceImpl implements DepartmentService{
 	}
 
 	@Override
-	public Department saveDepartment(String name, Physician head) {
-		Department department=new Department();
-		department.setName(name);
-		department.setHead(head);
+	//1
+	public Department saveDepartment(Department department) {
 		return departmentRepository.save(department);
 	}
 
 	@Override
-	public List<Department> getallDepartments(Integer departmentid) {
+	//2
+	public List<Department> getallDepartments() {
 		
 		return departmentRepository.findAll();
 	}
 
 	@Override
+	//3
 	public Department getDepartmentDetailByDeptId(Integer departmentid) {
 		
 		return departmentRepository.findById(departmentid).orElseThrow(()-> new RuntimeException("department not found"+departmentid));
 	}
 
 	@Override
-	public Physician getHeadOfDepartmentDetails(Integer head) {
-		Department department=departmentRepository.findById(head).orElseThrow(()-> new RuntimeException("department not found"+head));
-		int headEmployeeId=departmentRepository.getHead();
-		
-		
-		
-		return physicianRepository.findById(headEmployeeId).orElseThrow(()->new RuntimeException("Department head not found"+headEmployeeId));
+	//4
+	public Physician getHeadOfDepartmentDetails(Integer depid) {
+		Department dep = departmentRepository.findById(depid).get();
+		return dep.getHead();
 	}
 
 	@Override
-	public List<String> getHeadCertificationDetailByDeptId(Integer departmentid) {
-		Department department=departmentRepository.findById(departmentid).orElseThrow(()-> new RuntimeException("department not found"+departmentid));
-		int headEmployeeId=departmentRepository.getHead();
-		
-		Physician head=physicianRepository.findById(headEmployeeId).orElseThrow(()->new RuntimeException("Department head not found"+headEmployeeId));
-		
-		List<Trainedin> certifications=trainedinRepository.findByPhysician(head);
-		List<String> certificationNames=new ArrayList<>();
-		for(Trainedin certification : certifications) {
-			Procedures treatmentCode=certification.getTreatment();
-			Procedures procedure=procedureRepository.findByCode(treatmentCode);
-			certificationNames.add(procedure.getName());
-			
-		}
-		return certificationNames;
-	}
-
+	  public List<Trainedin> getHeadCertificationDetailByDeptId(Integer departmentid)
+	  { 
+	  Department department=departmentRepository.findById(departmentid).orElseThrow(()-> new
+	  RuntimeException("department not found"+departmentid)); 
+	  Physician phy = department.getHead();
+	  List<Trainedin> certifications=trainedinRepository.findByPhysician(phy);
+	  return certifications; 
+	  }
 	@Override
+	//6
 	public List<Department> getDepartmentByHeadId(Integer head) {
-		
-		return departmentRepository.findbyHead(head);
+		Physician phy = physicianRepository.findById(head).get();
+		return departmentRepository.findByHead(phy);
 	}
 
 	@Override
+	//7
 	public Boolean PhysicianIsHeadOfAnyDepartmentOrNot(Integer physicianid) {
-		
-		return departmentRepository.existsByHead(physicianid);
-	}
+		Boolean ishead = true;
+		List<Department> list = getDepartmentByHeadId(physicianid);
+		if(list.isEmpty()) {
+			ishead = false;
+		}
+		return ishead;
 
-	@Override
-	public void updateDepartmentHeadId(Physician head, Integer departmentid) {
-		Department department=departmentRepository.findById(departmentid).orElseThrow(()->new RuntimeException("department not found"));
-		department.setHead(head);
-		departmentRepository.save(department);
 		
 	}
 
 	@Override
-	public void updateNameOfDepartment(Integer departmentid, String newName) {
+	//8
+	public Department updateDepartmentHeadId(Department dep, Integer departmentid) {
 		Department department=departmentRepository.findById(departmentid).orElseThrow(()->new RuntimeException("department not found"));
-		department.setName(newName);
-		departmentRepository.save(department);
+		department.setHead(dep.getHead());
+		return departmentRepository.save(department);
+		
+	}
+
+	@Override
+	//9
+	public Department updateNameOfDepartment(Integer departmentid,Department dep) {
+		Department department=departmentRepository.findById(departmentid).orElseThrow(()->new RuntimeException("department not found"));
+		department.setName(dep.getName());
+		return departmentRepository.save(department);
 		
 		
 	}

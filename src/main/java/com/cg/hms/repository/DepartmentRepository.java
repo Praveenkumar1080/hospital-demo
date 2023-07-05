@@ -6,20 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.cg.hms.Entity.Department;
+import com.cg.hms.Entity.Physician;
 
 @Repository
 public interface DepartmentRepository extends JpaRepository<Department, Integer> {
 
-	Boolean existsByHead(Integer physicianid);
-
-	List<Department> findbyHead(Integer head);
-
-	void setName(String name);
-
-	void setHead(Integer head);
-
-	
-
-	int getHead();
-
+	public List<Department> findByHead(Physician physician);
 }

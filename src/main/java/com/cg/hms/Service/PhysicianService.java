@@ -14,10 +14,10 @@ public interface PhysicianService {
 	public Physician savePhysician(Physician physician);
 	public Physician getPhysicianDetailsByName(String name);
 	public List<Physician>  getallPhysiciansByPositions(String position);
-	public Optional<Physician>  getallPhysiciansByEmpid(Integer employeeid);
-	public Physician updatePositionOfPhysician(Integer employeeid,String newPosition);
-	public Physician updateNameOfPhysician(Integer employeeid,String newName);
-	public Physician updateSSNOfPhysician(Integer employeeid,Integer SSN);
+	public Physician  getPhysicianByEmpid(Integer employeeid);
+	public Physician updatePositionOfPhysician(Integer employeeid,Physician physician);
+	public Physician updateNameOfPhysician(Integer employeeid,Physician physician);
+	public Physician updateSSNOfPhysician(Integer employeeid,Physician physician);
 
 	
 	

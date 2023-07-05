@@ -12,10 +12,10 @@ import com.cg.hms.Entity.Procedures;
 public interface ProcedureService {
 	
 	public Procedures saveProcedure(Procedures procedure);
-	public List<Procedures> getAllProcedures(Integer code);
-	public Procedures getCostOfProcedureById();
-	public Procedures getCostOfProcedureByName();
-	public Procedures updateCostOfProcedure(Procedures procedure);
-	public Procedures updateNameOfProcedureB(Procedures procedure);
+	public List<Procedures> getAllProcedures();
+	public Procedures getCostOfProcedureById(Integer id);
+	public List<Procedures> getCostOfProcedureByName(String name);
+	public Procedures updateCostOfProcedure(Integer procedureId,Procedures pd);
+	public Procedures updateNameOfProcedureB(Integer procedureId, Procedures pd);
 
 }

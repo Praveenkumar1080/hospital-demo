@@ -1,5 +1,6 @@
 package com.cg.hms.Entity;
 
+import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
@@ -28,8 +29,9 @@ public class Trainedin {
 	@MapsId("treatment")
 	@JoinColumn(name="treatment")
     private Procedures treatment;
-	
+	@Column
     private String certificationdate;
+	@Column
     private String certificationexpires;
 	public Trainedin(Physician physician, Procedures treatment, String certificationdate, String certificationexpires) {
 		super();
